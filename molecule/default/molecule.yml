@@ -9,7 +9,7 @@ driver:
   name: docker
 platforms:
   - name: instance
-    image: "geerlingguy/docker-debian9-ansible:latest"
+    image: "geerlingguy/docker-${MOLECULE_DISTRO:-debian9}-ansible:latest"
     command: ""
     volumes:
       - /sys/fs/cgroup:/sys/fs/cgroup:ro
