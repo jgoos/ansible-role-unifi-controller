@@ -1,0 +1,35 @@
+---
+# tasks file for ansible-role-unifi-controller
+- name: Update apt cache
+  apt:
+    update_cache: yes
+
+- name: Install prerequisites packages
+  package:
+    name:
+      - openjdk-8-jre-headless
+      - ca-certificates
+      - apt-transport-https
+      - haveged
+
+- name: Add unifi gpg key
+  apt_key:
+    keyserver: keyserver.ubuntu.com
+    id: 06E85760C0A52C50
+
+- name: Add unifi repository
+  apt_repository:
+    repo: deb https://www.ui.com/downloads/unifi/debian stable ubiquiti
+    state: present
+    filename: 100-ubnt-unifi
+
+- name: Install packages
+  package:
+    name:
+      - unifi
+
+- name: Start unifi service
+  systemd:
+    name: unifi
+    state: started
+    enabled: true

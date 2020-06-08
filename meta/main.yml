@@ -1,0 +1,15 @@
+galaxy_info:
+  author: Joep Goossens
+  description: Install & Configure UniFi Network Controller
+  license: "license (BSD, MIT)"
+
+  min_ansible_version: 2.9
+
+  platforms:
+    - name: Debian
+      versions:
+        - stretch
+
+  galaxy_tags: []
+
+dependencies: []
