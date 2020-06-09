@@ -14,7 +14,6 @@ jobs:
     strategy:
       matrix:
         distro:
-          - centos8
           - debian9
 
     steps:
@@ -28,12 +27,12 @@ jobs:
 
       - name: Install test dependencies.
         run: |
-          sudo apt install docker -y
           python3 -m pip install --upgrade pip
           pip3 install molecule docker yamllint ansible-lint
 
       - name: Run Molecule tests.
         run: molecule test
         env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: "${{ matrix.distro }}"
-          #  working-directory: molecule
