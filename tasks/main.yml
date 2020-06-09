@@ -30,6 +30,9 @@
 
 - name: Start unifi service
   systemd:
-    name: unifi
+    name: "{{ item }}"
     state: started
     enabled: true
+  with_items:
+    - haveged
+    - unifi
